@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meta-Auxdior.FM-35 | Quantum Audio Hosting</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary: #00f0ff;
+            --secondary: #ff00f2;
+            --dark: #0a0a1a;
+            --darker: #050510;
+        }
+        
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background-color: var(--darker);
+            color: white;
+            overflow-x: hidden;
+        }
+        
+        .orbitron {
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+        
+        .glow {
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.7);
+        }
+        
+        .glow-box {
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
+        }
+        
+        .audio-wave {
+            position: relative;
+            height: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+        
+        .wave-bar {
+            background: linear-gradient(to top, var(--primary), var(--secondary));
+            width: 3px;
+            border-radius: 10px;
+            animation: wave 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes wave {
+            0%, 100% {
+                height: 20%;
+            }
+            50% {
+                height: 100%;
+            }
+        }
+        
+        .wave-bar:nth-child(1) { animation-delay: 0.1s; }
+        .wave-bar:nth-child(2) { animation-delay: 0.3s; }
+        .wave-bar:nth-child(3) { animation-delay: 0.6s; }
+        .wave-bar:nth-child(4) { animation-delay: 0.9s; }
+        .wave-bar:nth-child(5) { animation-delay: 1.2s; }
+        .wave-bar:nth-child(6) { animation-delay: 0.9s; }
+        .wave-bar:nth-child(7) { animation-delay: 0.6s; }
+        .wave-bar:nth-child(8) { animation-delay: 0.3s; }
+        .wave-bar:nth-child(9) { animation-delay: 0.1s; }
+        
+        .hexagon {
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        }
+        
+        .scanline {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                rgba(0, 240, 255, 0.1) 0%,
+                rgba(0, 240, 255, 0) 10%
+            );
+            background-size: 100% 8px;
+            animation: scanline 8s linear infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes scanline {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 0 100%;
+            }
+        }
+        
+        .terminal-input::before {
+            content: "> ";
+            color: var(--primary);
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(0, 240, 255, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(0, 240, 255, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(0, 240, 255, 0);
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen relative">
+    <div class="scanline"></div>
+    
+    <!-- Header -->
+    <header class="border-b border-gray-800 backdrop-blur-md bg-black bg-opacity-70 fixed w-full z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="hexagon w-10 h-10 gradient-bg flex items-center justify-center">
+                    <i class="fas fa-satellite-dish text-white"></i>
+                </div>
+                <h1 class="orbitron text-2xl font-bold gradient-text">META-AUXDIOR<span class="text-white">.FM-35</span></h1>
+            </div>
+            
+            <nav class="hidden md:flex space-x-8">
+                <a href="#" class="orbitron text-white hover:text-cyan-300 transition-colors">DISCOVER</a>
+                <a href="#" class="orbitron text-white hover:text-purple-300 transition-colors">UPLOAD</a>
+                <a href="#" class="orbitron text-white hover:text-pink-300 transition-colors">CHANNELS</a>
+                <a href="#" class="orbitron text-white hover:text-cyan-300 transition-colors">LABS</a>
+            </nav>
+            
+            <div class="flex items-center space-x-4">
+                <button class="orbitron bg-transparent border border-cyan-400 text-cyan-400 px-4 py-1 rounded-full hover:bg-cyan-400 hover:bg-opacity-20 transition-all">
+                    SIGN IN
+                </button>
+                <button class="orbitron gradient-bg text-black px-4 py-1 rounded-full hover:opacity-90 transition-all">
+                    JOIN
+                </button>
+            </div>
+            
+            <button class="md:hidden text-white text-2xl">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="pt-24 pb-16">
+        <!-- Hero Section -->
+        <section class="container mx-auto px-4 py-12">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h2 class="orbitron text-4xl md:text-6xl font-bold mb-6">
+                        <span class="gradient-text glow">QUANTUM AUDIO</span><br>
+                        <span class="text-white">HOSTING PLATFORM</span>
+                    </h2>
+                    <p class="text-gray-300 mb-8 text-lg max-w-lg">
+                        Experience the future of sound with our decentralized audio hosting solution. 
+                        Powered by quantum encryption and neural processing.
+                    </p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <button class="orbitron gradient-bg text-black px-8 py-3 rounded-full hover:opacity-90 transition-all text-lg font-medium">
+                            UPLOAD TRACK
+                        </button>
+                        <button class="orbitron bg-transparent border border-cyan-400 text-cyan-400 px-8 py-3 rounded-full hover:bg-cyan-400 hover:bg-opacity-20 transition-all text-lg font-medium">
+                            EXPLORE
+                        </button>
+                    </div>
+                </div>
+                <div class="md:w-1/2 relative">
+                    <div class="glow-box bg-black bg-opacity-50 border border-gray-800 rounded-xl p-6 backdrop-blur-sm">
+                        <div class="flex justify-between items-center mb-6">
+                            <div>
+                                <h3 class="orbitron text-xl text-white">NOW PLAYING</h3>
+                                <p class="text-gray-400">FM-35 CHANNEL</p>
+                            </div>
+                            <div class="flex space-x-2">
+                                <button class="w-8 h-8 rounded-full bg-gray-800 text-cyan-400 flex items-center justify-center">
+                                    <i class="fas fa-random"></i>
+                                </button>
+                                <button class="w-8 h-8 rounded-full bg-gray-800 text-cyan-400 flex items-center justify-center">
+                                    <i class="fas fa-redo"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="hexagon w-40 h-40 mx-auto mb-6 gradient-bg flex items-center justify-center relative overflow-hidden">
+                            <div class="hexagon w-36 h-36 bg-black flex items-center justify-center">
+                                <i class="fas fa-music text-4xl gradient-text"></i>
+                            </div>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="w-16 h-16 rounded-full bg-black border-2 border-cyan-400 pulse"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center mb-6">
+                            <h4 class="orbitron text-xl text-white mb-1">NEURAL OVERDRIVE</h4>
+                            <p class="text-gray-400">QUANTUM SYNTHESIS</p>
+                        </div>
+                        
+                        <div class="audio-wave mb-4 px-4">
+                            <div class="wave-bar"></div>
+                            <div class="wave-bar"></div>
+                            <div class="wave-bar"></div>
+                            <div class="wave-bar"></div>
+                            <div class="wave-bar"></div>
+                            <div class="wave-bar"></div>
+                            <div class="wave-bar"></div>
+                            <div class="wave-bar"></div>
+                            <div class="wave-bar"></div>
+                        </div>
+                        
+                        <div class="flex justify-between text-xs text-gray-400 mb-4 px-2">
+                            <span>1:24</span>
+                            <span>4:37</span>
+                        </div>
+                        
+                        <div class="flex justify-between items-center">
+                            <button class="text-cyan-400 text-xl">
+                                <i class="fas fa-step-backward"></i>
+                            </button>
+                            <button class="w-12 h-12 rounded-full gradient-bg text-black flex items-center justify-center">
+                                <i class="fas fa-pause"></i>
+                            </button>
+                            <button class="text-cyan-400 text-xl">
+                                <i class="fas fa-step-forward"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Featured Channels -->
+        <section class="container mx-auto px-4 py-16">
+            <div class="flex justify-between items-center mb-10">
+                <h2 class="orbitron text-3xl font-bold text-white">
+                    <span class="gradient-text">FEATURED</span> CHANNELS
+                </h2>
+                <a href="#" class="orbitron text-cyan-400 hover:text-cyan-300 transition-colors flex items-center">
+                    VIEW ALL <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Channel 1 -->
+                <div class="bg-black bg-opacity-50 border border-gray-800 rounded-xl overflow-hidden hover:glow-box transition-all">
+                    <div class="relative">
+                        <img src="https://source.unsplash.com/random/600x400/?cyberpunk" alt="Channel Art" class="w-full h-48 object-cover">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                            <div class="w-12 h-12 gradient-bg rounded-full flex items-center justify-center absolute -top-6 right-4">
+                                <i class="fas fa-play text-white"></i>
+                            </div>
+                            <h3 class="orbitron text-white text-lg">HYPERBOREA</h3>
+                            <p class="text-gray-400 text-sm">DARK SYNTH</p>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-gray-400 text-sm">24 TRACKS</span>
+                            <span class="text-cyan-400 text-sm">3.2M LISTENERS</span>
+                        </div>
+                        <div class="h-1 bg-gray-800 rounded-full mb-2">
+                            <div class="h-1 gradient-bg rounded-full" style="width: 75%"></div>
+                        </div>
+                        <button class="orbitron w-full py-2 border border-cyan-400 text-cyan-400 rounded-full hover:bg-cyan-400 hover:bg-opacity-20 transition-all text-sm">
+                            SUBSCRIBE
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Channel 2 -->
+                <div class="bg-black bg-opacity-50 border border-gray-800 rounded-xl overflow-hidden hover:glow-box transition-all">
+                    <div class="relative">
+                        <img src="https://source.unsplash.com/random/600x400/?futuristic" alt="Channel Art" class="w-full h-48 object-cover">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                            <div class="w-12 h-12 gradient-bg rounded-full flex items-center justify-center absolute -top-6 right-4">
+                                <i class="fas fa-play text-white"></i>
+                            </div>
+                            <h3 class="orbitron text-white text-lg">NEON DREAMS</h3>
+                            <p class="text-gray-400 text-sm">CYBER WAVE</p>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-gray-400 text-sm">18 TRACKS</span>
+                            <span class="text-cyan-400 text-sm">1.8M LISTENERS</span>
+                        </div>
+                        <div class="h-1 bg-gray-800 rounded-full mb-2">
+                            <div class="h-1 gradient-bg rounded-full" style="width: 60%"></div>
+                        </div>
+                        <button class="orbitron w-full py-2 border border-cyan-400 text-cyan-400 rounded-full hover:bg-cyan-400 hover:bg-opacity-20 transition-all text-sm">
+                            SUBSCRIBE
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Channel 3 -->
+                <div class="bg-black bg-opacity-50 border border-gray-800 rounded-xl overflow-hidden hover:glow-box transition-all">
+                    <div class="relative">
+                        <img src="https://source.unsplash.com/random/600x400/?scifi" alt="Channel Art" class="w-full h-48 object-cover">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                            <div class="w-12 h-12 gradient-bg rounded-full flex items-center justify-center absolute -top-6 right-4">
+                                <i class="fas fa-play text-white"></i>
+                            </div>
+                            <h3 class="orbitron text-white text-lg">QUANTUM LOOP</h3>
+                            <p class="text-gray-400 text-sm">TECHNO</p>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-gray-400 text-sm">32 TRACKS</span>
+                            <span class="text-cyan-400 text-sm">4.5M LISTENERS</span>
+                        </div>
+                        <div class="h-1 bg-gray-800 rounded-full mb-2">
+                            <div class="h-1 gradient-bg rounded-full" style="width: 90%"></div>
+                        </div>
+                        <button class="orbitron w-full py-2 border border-cyan-400 text-cyan-400 rounded-full hover:bg-cyan-400 hover:bg-opacity-20 transition-all text-sm">
+                            SUBSCRIBE
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Channel 4 -->
+                <div class="bg-black bg-opacity-50 border border-gray-800 rounded-xl overflow-hidden hover:glow-box transition-all">
+                    <div class="relative">
+                        <img src="https://source.unsplash.com/random/600x400/?digital" alt="Channel Art" class="w-full h-48 object-cover">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                            <div class="w-12 h-12 gradient-bg rounded-full flex items-center justify-center absolute -top-6 right-4">
+                                <i class="fas fa-play text-white"></i>
+                            </div>
+                            <h3 class="orbitron text-white text-lg">VOID TRANSMISSION</h3>
+                            <p class="text-gray-400 text-sm">AMBIENT</p>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-gray-400 text-sm">15 TRACKS</span>
+                            <span class="text-cyan-400 text-sm">1.1M LISTENERS</span>
+                        </div>
+                        <div class="h-1 bg-gray-800 rounded-full mb-2">
+                            <div class="h-1 gradient-bg rounded-full" style="width: 40%"></div>
+                        </div>
+                        <button class="orbitron w-full py-2 border border-cyan-400 text-cyan-400 rounded-full hover:bg-cyan-400 hover:bg-opacity-20 transition-all text-sm">
+                            SUBSCRIBE
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Trending Tracks -->
+        <section class="container mx-auto px-4 py-16">
+            <div class="flex justify-between items-center mb-10">
+                <h2 class="orbitron text-3xl font-bold text-white">
+                    <span class="gradient-text">TRENDING</span> TRACKS
+                </h2>
+                <div class="flex space-x-4">
+                    <button class="orbitron px-4 py-1 border border-gray-700 text-gray-400 rounded-full hover:border-cyan-400 hover:text-cyan-400 transition-all">
+                        TODAY
+                    </button>
+                    <button class="orbitron px-4 py-1 border border-cyan-400 text-cyan-400 rounded-full bg-cyan-400 bg-opacity-20">
+                        WEEK
+                    </button>
+                    <button class="orbitron px-4 py-1 border border-gray-700 text-gray-400 rounded-full hover:border-cyan-400 hover:text-cyan-400 transition-all">
+                        MONTH
+                    </button>
+                </div>
+            </div>
+            
+            <div class="bg-black bg-opacity-50 border border-gray-800 rounded-xl overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-800">
+                        <thead>
+                            <tr>
+                                <th class="orbitron px-6 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">#</th>
+                                <th class="orbitron px-6 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">TRACK</th>
+                                <th class="orbitron px-6 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">CHANNEL</th>
+                                <th class="orbitron px-6 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">TIME</th>
+                                <th class="orbitron px-6 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">PLAYS</th>
+                                <th class="orbitron px-6 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider"></th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-800">
+                            <!-- Track 1 -->
+                            <tr class="hover:bg-gray-900 transition-colors">
+                                <td class="orbitron px-6 py-4 whitespace-nowrap text-sm text-cyan-400">01</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0 h-10 w-10 gradient-bg rounded flex items-center justify-center mr-3">
+                                            <i class="fas fa-music text-white"></i>
+                                        </div>
+                                        <div>
+                                            <div class="orbitron text-sm font-medium text-white">Neon Sunrise</div>
+                                            <div class="text-sm text-gray-400">Synthwave</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="orbitron px-6 py-4 whitespace-nowrap text-sm text-gray-400">NEON DREAMS</td>
+                                <td class="orbitron px-6 py-4 whitespace-nowrap text-sm text-gray-400">3:42</td>
+                                <td class="orbitron px-6 py-4 whitespace-nowrap text-sm text-gray-400">1.2M</td>
+                                <td class="orbitron px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                    <button class="text-cyan-400 hover:text-cyan-300">
+                                        <i class="fas fa-play"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            
+                            <!-- Track 2 -->
+                            <tr class="hover:bg-gray-900 transition-colors">
+                                <td class="orbitron px-6 py-4 whitespace-nowrap text-sm text-cyan-400">02</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0 h-10 w-10 gradient-bg rounded flex items-center justify-center mr-3">
+                                            <i class="fas fa-music text-white"></i>
+                                        </div>
+                                        <div>
+                                            <div class="orbitron text-sm font-medium text-white">Quantum Echo</div>
+                                            <div class="text-sm text-gray-400">Techno</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="orbitron px-6 py-4 whitespace-nowrap text-sm text-gray-400">QUANTUM LOOP</td>
+                                <td class="orbitron px-6 py-4 whitespace-nowrap text-sm text-gray-400">5:18</td>
+                                <td class="orbitron px-6 py-4 whitespace-nowrap text-sm text-gray-400">980K</td>
+                                <td class="orbitron px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                    <button class="text-cyan-400 hover:text-cyan-300">
+                                        <i class="fas fa-play"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            
+                            <!-- Track 3 -->
+                            <tr class="hover:bg-gray-900 transition-colors">
+                                <td class="orbitron px-6 py-4 whitespace-nowrap text-sm text-cyan-400">03</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0 h-10 w-10 gradient-bg rounded flex items-center justify-center mr-3">
+                                            <i class="fas fa-music text-white"></i>
+                                        </div>
+                                        <div>
+                                            <div class="orbitron text-sm font-medium text-white">Dark Matter</div>
+                                            <div class="text-sm text-gray-400">Dark Synth</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="orbitron px-6 py-4 whitespace-nowrap text-sm text-gray-400">HYPERBOREA</td>
+                                <td class="orbitron px-6 py-4 whitespace-nowrap text-sm text-gray-400">4:15</td>
+                                <td class="orbitron px-6 py-4 whitespace-nowrap text-sm text-gray-400">850K</td>
+                                <td class="orbitron px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                    <button class="text-cyan-400 hover:text-cyan-300">
+                                        <i class="fas fa-play"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            
+                            <!-- Track 4 -->
+                            <tr class="hover:bg-gray-900 transition-colors">
+                                <td class="orbitron px-6 py-4 whitespace-nowrap text-sm text-cyan-400">04</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0 h-10 w-10 gradient-bg rounded flex items-center justify-center mr-3">
+                                            <i class="fas fa-music text-white"></i>
+                                        </div>
+                                        <div>
+                                            <div class="orbitron text-sm font-medium text-white">Static Dreams</div>
+                                            <div class="text-sm text-gray-400">Ambient</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="orbitron px-6 py-4 whitespace-nowrap text-sm text-gray-400">VOID TRANSMISSION</td>
+                                <td class="orbitron px-6 py-4 whitespace-nowrap text-sm text-gray-400">6:32</td>
+                                <td class="orbitron px-6 py-4 whitespace-nowrap text-sm text-gray-400">720K</td>
+                                <td class="orbitron px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                    <button class="text-cyan-400 hover:text-cyan-300">
+                                        <i class="fas fa-play"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            
+                            <!-- Track 5 -->
+                            <tr class="hover:bg-gray-900 transition-colors">
+                                <td class="orbitron px-6 py-4 whitespace-nowrap text-sm text-cyan-400">05</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0 h-10 w-10 gradient-bg rounded flex items-center justify-center mr-3">
+                                            <i class="fas fa-music text-white"></i>
+                                        </div>
+                                        <div>
+                                            <div class="orbitron text-sm font-medium text-white">Cyber City</div>
+                                            <div class="text-sm text-gray-400">Cyber Wave</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="orbitron px-6 py-4 whitespace-nowrap text-sm text-gray-400">NEON DREAMS</td>
+                                <td class="orbitron px-6 py-4 whitespace-nowrap text-sm text-gray-400">3:58</td>
+                                <td class="orbitron px-6 py-4 whitespace-nowrap text-sm text-gray-400">680K</td>
+                                <td class="orbitron px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                    <button class="text-cyan-400 hover:text-cyan-300">
+                                        <i class="fas fa-play"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Upload Section -->
+        <section class="container mx-auto px-4 py-16">
+            <div class="gradient-bg rounded-2xl p-0.5">
+                <div class="bg-black rounded-2xl p-12">
+                    <div class="flex flex-col md:flex-row items-center">
+                        <div class="md:w-1/2 mb-10 md:mb-0">
+                            <h2 class="orbitron text-3xl md:text-4xl font-bold mb-6 text-white">
+                                <span class="gradient-text">UPLOAD</span> YOUR SOUND
+                            </h2>
+                            <p class="text-gray-300 mb-8 max-w-lg">
+                                Join our quantum audio network and distribute your tracks across the metaverse. 
+                                Get instant analytics, monetization options, and global exposure.
+                            </p>
+                            <ul class="space-y-3 mb-8">
+                                <li class="flex items-center">
+                                    <div class="w-6 h-6 rounded-full gradient-bg flex items-center justify-center mr-3">
+                                        <i class="fas fa-check text-xs text-black"></i>
+                                    </div>
+                                    <span class="text-gray-300">Quantum encryption for secure uploads</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <div class="w-6 h-6 rounded-full gradient-bg flex items-center justify-center mr-3">
+                                        <i class="fas fa-check text-xs text-black"></i>
+                                    </div>
+                                    <span class="text-gray-300">Neural audio enhancement</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <div class="w-6 h-6 rounded-full gradient-bg flex items-center justify-center mr-3">
+                                        <i class="fas fa-check text-xs text-black"></i>
+                                    </div>
+                                    <span class="text-gray-300">Cross-platform distribution</span>
+                                </li>
+                            </ul>
+                            <button class="orbitron gradient-bg text-black px-8 py-3 rounded-full hover:opacity-90 transition-all text-lg font-medium">
+                                START UPLOADING
+                            </button>
+                        </div>
+                        <div class="md:w-1/2 relative">
+                            <div class="bg-gray-900 bg-opacity-50 border-2 border-dashed border-gray-700 rounded-xl p-8 text-center">
+                                <div class="w-20 h-20 gradient-bg rounded-full flex items-center justify-center mx-auto mb-6">
+                                    <i class="fas fa-cloud-upload-alt text-2xl text-white"></i>
+                                </div>
+                                <h3 class="orbitron text-xl text-white mb-2">DRAG & DROP</h3>
+                                <p class="text-gray-400 mb-6">Your audio files here</p>
+                                <div class="terminal-input bg-gray-800 text-gray-300 p-3 rounded text-left mb-4 font-mono text-sm">
+                                    processing upload_audio.wav --encrypt --enhance
+                                </div>
+                                <div class="terminal-input bg-gray-800 text-gray-300 p-3 rounded text-left font-mono text-sm">
+                                    connecting to quantum_nodes... established
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-black bg-opacity-70 border-t border-gray-800 py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="hexagon w-8 h-8 gradient-bg flex items-center justify-center">
+                            <i class="fas fa-satellite-dish text-white text-xs"></i>
+                        </div>
+                        <h3 class="orbitron text-xl font-bold gradient-text">META-AUXDIOR.FM-35</h3>
+                    </div>
+                    <p class="text-gray-400 text-sm">
+                        Quantum audio hosting platform for the metaverse era. 
+                        Powered by neural networks and decentralized technology.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="orbitron text-white text-lg mb-4">EXPLORE</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors text-sm">Featured Channels</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors text-sm">Popular Tracks</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors text-sm">New Releases</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors text-sm">Genres</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors text-sm">Playlists</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="orbitron text-white text-lg mb-4">COMPANY</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors text-sm">About</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors text-sm">Careers</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors text-sm">Blog</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors text-sm">Press</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors text-sm">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="orbitron text-white text-lg mb-4">SUBSCRIBE</h4>
+                    <p class="text-gray-400 text-sm mb-4">
+                        Get the latest updates and news from the quantum audio frontier.
+                    </p>
+                    <div class="flex">
+                        <input type="email" placeholder="Your email" class="bg-gray-900 text-white px-4 py-2 rounded-l-full focus:outline-none focus:ring-1 focus:ring-cyan-400 w-full text-sm">
+                        <button class="gradient-bg text-black px-4 rounded-r-full hover:opacity-90 transition-all">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                    <div class="flex space-x-4 mt-4">
+                        <a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-500 text-sm mb-4 md:mb-0">
+                    © 2023 Meta-Auxdior.FM-35. All rights reserved.
+                </p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-500 hover:text-gray-300 transition-colors text-sm">Terms</a>
+                    <a href="#" class="text-gray-500 hover:text-gray-300 transition-colors text-sm">Privacy</a>
+                    <a href="#" class="text-gray-500 hover:text-gray-300 transition-colors text-sm">Cookies</a>
+                    <a href="#" class="text-gray-500 hover:text-gray-300 transition-colors text-sm">FAQ</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Mini Player -->
+    <div class="fixed bottom-0 left-0 right-0 bg-black bg-opacity-90 border-t border-gray-800 backdrop-blur-md z-40">
+        <div class="container mx-auto px-4 py-2">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4 w-1/4">
+                    <img src="https://source.unsplash.com/random/80x80/?album" alt="Album Art" class="w-12 h-12 rounded">
+                    <div>
+                        <h4 class="orbitron text-sm text-white">Neon Sunrise</h4>
+                        <p class="text-xs text-gray-400">NEON DREAMS</p>
+                    </div>
+                </div>
+                
+                <div class="w-2/4">
+                    <div class="flex justify-center items-center space-x-6">
+                        <button class="text-gray-400 hover:text-cyan-400 transition-colors">
+                            <i class="fas fa-random"></i>
+                        </button>
+                        <button class="text-gray-400 hover:text-cyan-400 transition-colors">
+                            <i class="fas fa-step-backward"></i>
+                        </button>
+                        <button class="w-8 h-8 rounded-full gradient-bg text-black flex items-center justify-center">
+                            <i class="fas fa-pause"></i>
+                        </button>
+                        <button class="text-gray-400 hover:text-cyan-400 transition-colors">
+                            <i class="fas fa-step-forward"></i>
+                        </button>
+                        <button class="text-gray-400 hover:text-cyan-400 transition-colors">
+                            <i class="fas fa-redo"></i>
+                        </button>
+                    </div>
+                    <div class="flex items-center space-x-2 mt-2 px-10">
+                        <span class="text-xs text-gray-400">1:24</span>
+                        <div class="h-1 bg-gray-800 rounded-full flex-grow">
+                            <div class="h-1 gradient-bg rounded-full" style="width: 35%"></div>
+                        </div>
+                        <span class="text-xs text-gray-400">3:42</span>
+                    </div>
+                </div>
+                
+                <div class="w-1/4 flex justify-end items-center space-x-4">
+                    <div class="audio-wave w-24">
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                    </div>
+                    <button class="text-gray-400 hover:text-cyan-400 transition-colors">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <div class="w-24 h-1 bg-gray-800 rounded-full">
+                        <div class="h-1 gradient-bg rounded-full" style="width: 70%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Simple audio player functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Play buttons
+            const playButtons = document.querySelectorAll('[data-play]');
+            
+            playButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const trackId = this.getAttribute('data-play');
+                    // In a real app, this would play the corresponding track
+                    console.log('Playing track:', trackId);
+                    
+                    // Update mini player
+                    const miniPlayer = document.querySelector('.fixed.bottom-0');
+                    miniPlayer.querySelector('h4').textContent = this.closest('tr').querySelector('td:nth-child(2) div:nth-child(2) div:first-child').textContent;
+                    miniPlayer.querySelector('p').textContent = this.closest('tr').querySelector('td:nth-child(2) div:nth-child(2) div:last-child').textContent;
+                });
+            });
+            
+            // Main play/pause button
+            const mainPlayButton = document.querySelector('.fixed.bottom-0 button.w-8');
+            mainPlayButton.addEventListener('click', function() {
+                const icon = this.querySelector('i');
+                if (icon.classList.contains('fa-play')) {
+                    icon.classList.remove('fa-play');
+                    icon.classList.add('fa-pause');
+                } else {
+                    icon.classList.remove('fa-pause');
+                    icon.classList.add('fa-play');
+                }
+            });
+            
+            // Hero play/pause button
+            const heroPlayButton = document.querySelector('.glow-box button.w-12');
+            heroPlayButton.addEventListener('click', function() {
+                const icon = this.querySelector('i');
+                if (icon.classList.contains('fa-play')) {
+                    icon.classList.remove('fa-play');
+                    icon.classList.add('fa-pause');
+                } else {
+                    icon.classList.remove('fa-pause');
+                    icon.classList.add('fa-play');
+                }
+            });
+        });
+    </script>
+<p style="border-radius: 8px; text-align: center; font-size: 12px; color: #fff; margin-top: 16px;position: fixed; left: 8px; bottom: 8px; z-index: 10; background: rgba(0, 0, 0, 0.8); padding: 4px 8px;">Made with <img src="https://enzostvs-deepsite.hf.space/logo.svg" alt="DeepSite Logo" style="width: 16px; height: 16px; vertical-align: middle;display:inline-block;margin-right:3px;filter:brightness(0) invert(1);"><a href="https://enzostvs-deepsite.hf.space" style="color: #fff;text-decoration: underline;" target="_blank" >DeepSite</a> - 🧬 <a href="https://enzostvs-deepsite.hf.space?remix=Techno-Science/meta-auxdior-fm-35" style="color: #fff;text-decoration: underline;" target="_blank" >Remix</a></p></body>
+</html>
